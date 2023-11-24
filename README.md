@@ -50,6 +50,12 @@ The Ansible script includes tasks to:
 - Install dependencies and packages required for the applications.
 - Launch and configure the two applications, each running on a different port.
 
+## set up and configure server using ansible
+- configured nginx and added the reverse proxy to both app urls
+- set up mysql db server and configured it for both app database users
+- /db route set for db contains
+- /non-db for return 200 status code to user
+
 ## Usage
 
 1. Clone this repository:
