@@ -1,0 +1,75 @@
+# Vagrant Ansible Demo
+
+This repository demonstrates the use of Vagrant and Ansible to set up a three-tier application environment on virtual machines. In this demo, we launch an EC2 instance, install Vagrant, and create and configure a three-tier application using Ansible.
+
+## Setup
+
+### Install Vagrant
+
+To install Vagrant on your machine, follow these steps:
+
+1. Import the HashiCorp GPG key:
+
+   ```bash
+   wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+   ```
+
+2. Add the HashiCorp repository:
+
+   ```bash
+   echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+   ```
+
+3. Update and install Vagrant:
+
+   ```bash
+   sudo apt update && sudo apt install vagrant
+   ```
+
+### Launch Vagrant Virtual Machine
+
+To create a Vagrant virtual machine, follow these steps:
+
+1. Initialize Vagrant with an Ubuntu Trusty64 box:
+
+   ```bash
+   vagrant init ubuntu/trusty64
+   ```
+
+2. Verify that the Vagrantfile is created.
+
+### Three-Tier Application
+
+In this demo, two applications are created on the same server, running on different ports. Ansible is used to configure the three-tier application environment on Vagrant virtual boxes.
+
+## Ansible Configuration
+
+The Ansible script includes tasks to:
+
+- Set up and configure the necessary components on the virtual machines.
+- Install dependencies and packages required for the applications.
+- Launch and configure the two applications, each running on a different port.
+
+## Usage
+
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/your-username/vagrant-ansible-demo.git
+   ```
+
+2. Navigate to the repository:
+
+   ```bash
+   cd vagrant-ansible-demo
+   ```
+
+3. Run the Vagrant environment:
+
+   ```bash
+   vagrant up
+   ```
+
+4. Verify the successful setup by accessing the applications on the virtual machines.
+
+This demo provides a simple example of using Vagrant and Ansible to orchestrate the deployment of a three-tier application environment. Customize the Ansible script and Vagrant configuration based on your specific requirements.
