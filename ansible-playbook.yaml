@@ -1,0 +1,24 @@
+---
+- hosts: Nginx
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - Nginx
+
+- hosts: Flask
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - Flask
+
+- hosts: Mysql
+  remote_user: root
+  become: yes
+  become_method: sudo
+
+  roles:
+  - Mysql

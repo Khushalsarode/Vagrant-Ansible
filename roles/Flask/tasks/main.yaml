@@ -1,0 +1,52 @@
+---
+- name: Install required packages
+  apt:
+    name:
+      - python3
+      - python3-pip
+      - virtualenv
+    state: present
+  become: yes
+- name: Set up virtual environment
+  command: python3 -m virtualenv /home/venv
+  become: yes
+
+- name: Activate virtual environment
+  command: source /home/venv/bin/activate
+  become: yes
+
+- name: Install Flask and other dependencies
+  pip:
+    name:
+      - Flask
+      - pymysql
+    virtualenv: /home/venv
+  become: yes
+- name: Install required packages
+  apt:
+    name:
+      - python3
+      - python3-pip
+      - virtualenv
+    state: present
+  become: yes
+
+- name: Copy Flask app1
+  copy:
+    src: /home/ubuntu/app1.py
+    dest: /home
+    mode: 0755
+  become: yes
+- name: Copy Flask app2
+  copy:
+    src: /home/ubuntu/app2.py
+    dest: /home
+    mode: 0755
+  become: yes
+
+- name: Run Flask application1
+  command: python3 /home/app1.py
+  become: yes
+- name: Run Flask application2
+  command: python3 /home/app2.py
+  become: yes

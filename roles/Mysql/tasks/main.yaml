@@ -1,0 +1,69 @@
+  vars:
+    mysql_root_password: root#password
+    app1_db_user: app1_user
+    app1_db_password: app1_password
+    app1_database: db_one
+    app2_db_user: app2_user
+    app2_db_password: app2_password
+    app2_database: db_two
+
+  tasks:
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+      become: yes
+
+    - name: Start MySQL service
+      service:
+        name: mysql
+        state: started
+      become: yes
+
+    - name: Set MySQL root password
+      mysql_user:
+        name: root
+        password: "{{ mysql_root_password }}"
+      become: yes
+
+    - name: Create database for app1
+      mysql_db:
+        name: "{{ app1_database }}"
+        state: present
+      become: yes
+
+    - name: Create user for app1
+      mysql_user:
+        name: "{{ app1_db_user }}"
+        password: "{{ app1_db_password }}"
+        host: localhost
+        priv: "{{ app1_database }}.*:ALL"
+        state: present
+      become: yes
+
+    - name: Create database for app2
+      mysql_db:
+        name: "{{ app2_database }}"
+        state: present
+      become: yes
+
+    - name: Create user for app2
+      mysql_user:
+        name: "{{ app2_db_user }}"
+        password: "{{ app2_db_password }}"
+        host: localhost
+        priv: "{{ app2_database }}.*:ALL"
+        state: present
+      become: yes
+
+    - name: Secure MySQL installation (remove anonymous users, disallow root login remotely, etc.)
+      expect:
+        command: mysql_secure_installation
+        responses:
+          'Enter current password for root (enter for none):': ''
+          'Set root password? [Y/n]': 'n'
+          'Remove anonymous users? [Y/n]': 'Y'
+          'Disallow root login remotely? [Y/n]': 'Y'
+          'Remove test database and access to it? [Y/n]': 'Y'
+          'Reload privilege tables now? [Y/n]': 'Y'
+      become: yes
