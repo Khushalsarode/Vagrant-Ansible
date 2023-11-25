@@ -1,7 +1,7 @@
 # Vagrant Ansible Demo
 
 This repository demonstrates the use of Vagrant and Ansible to set up a three-tier application environment on virtual machines. In this demo, we launch an EC2 instance, install Vagrant, and create and configure a three-tier application using Ansible.
-[architecture Image](https://github.com/Khushalsarode/Vagrant-Ansible/blob/master/architecture.jpg)
+(architecture Image)[https://github.com/Khushalsarode/Vagrant-Ansible/blob/master/architecture.jpg]
 ## Setup
 
 ### Install Vagrant
