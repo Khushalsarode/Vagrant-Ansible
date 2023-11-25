@@ -56,14 +56,9 @@
         state: present
       become: yes
 
-    - name: Secure MySQL installation (remove anonymous users, disallow root login remotely, etc.)
-      expect:
-        command: mysql_secure_installation
-        responses:
-          'Enter current password for root (enter for none):': ''
-          'Set root password? [Y/n]': 'n'
-          'Remove anonymous users? [Y/n]': 'Y'
-          'Disallow root login remotely? [Y/n]': 'Y'
-          'Remove test database and access to it? [Y/n]': 'Y'
-          'Reload privilege tables now? [Y/n]': 'Y'
-      become: yes
+  - name: Configure firewall rules (adjust as needed)
+    ufw:
+      rule: allow
+      port: 3306  # MySQL default port
+      from_ip: "192.168.33.30"
+    become: yes
