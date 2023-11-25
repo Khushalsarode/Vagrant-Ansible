@@ -41,7 +41,13 @@ To create a Vagrant virtual machine, follow these steps:
 ### Three-Tier Application
 
 In this demo, two applications are created on the same server, running on different ports. Ansible is used to configure the three-tier application environment on Vagrant virtual boxes.
-
+- Load Balancer Tier: Implement this layer Nginx as the load balancer.
+- Application Tier: Host two separate applications on this layer.
+- /db API: This API must retrieve data from the database.
+- /non-db API: This API should simply return an HTTP 200 status code.
+- Database Tier:
+- Create separate databases for each application (db_one, db_two).
+  
 ## Ansible Configuration
 
 The Ansible script includes tasks to:
@@ -77,5 +83,7 @@ The Ansible script includes tasks to:
    ```
 
 4. Verify the successful setup by accessing the applications on the virtual machines.
+
+5. 
 
 This demo provides a simple example of using Vagrant and Ansible to orchestrate the deployment of a three-tier application environment. Customize the Ansible script and Vagrant configuration based on your specific requirements.
