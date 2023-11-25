@@ -84,6 +84,6 @@ The Ansible script includes tasks to:
 
 4. Verify the successful setup by accessing the applications on the virtual machines.
 
-5. 
+5. To access Application use the nginx ip using route you want to access, it will serve as per request
 
 This demo provides a simple example of using Vagrant and Ansible to orchestrate the deployment of a three-tier application environment. Customize the Ansible script and Vagrant configuration based on your specific requirements.
